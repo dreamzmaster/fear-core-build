@@ -15,11 +15,5 @@ module.exports = {
      * remove HTML blocks
      * @see module:tasks/html/remove
      */
-    remove: require('./remove'),
-
-    /**
-     * validate HTML
-     * @see module:tasks/html/validate
-     */
-    validate: require('./validate')
+    remove: require('./remove')
 };

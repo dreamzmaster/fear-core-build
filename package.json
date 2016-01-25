@@ -1,5 +1,5 @@
 {
-  "name": "fear-core-build-tasks",
+  "name": "fear-core-build",
   "version": "1.1.4",
   "description": "FEAR core API driven build tasks",
   "main": "index.js",
