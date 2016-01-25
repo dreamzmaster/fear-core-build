@@ -15,23 +15,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DigitalInnovation/fear-core-build-tasks.git"
+    "url": "https://github.com/DigitalInnovation/fear-core-build.git"
   },
   "author": {
     "name": "Alex Bowen",
-    "email": "marton.hipszki@mnscorp.net"
+    "email": "alex.bowen@mnscorp.net"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DigitalInnovation/fear-core-build-tasks/issues"
+    "url": "https://github.com/DigitalInnovation/fear-core-build/issues"
   },
-  "homepage": "http://digitalinnovation.github.io/fear-core-build-tasks",
+  "homepage": "http://digitalinnovation.github.io/fear-core-build",
   "dependencies": {
     "autoprefixer": "6.1.1",
-    "chalk": "1.1.1",
     "del": "1.2.0",
-    "extend": "2.0.1",
-    "fs-extra": "0.24.0",
     "gulp-batch": "1.0.5",
     "gulp-copy": "0.0.2",
     "gulp-flatten": "0.0.4",
@@ -51,13 +48,7 @@
     "gulp-uglify": "1.4.1",
     "gulp-util": "3.0.6",
     "jspm": "0.16.10",
-    "lazypipe": "0.2.4",
-    "lodash": "3.10.1",
     "run-sequence": "1.1.4",
-    "sprity": "1.0.7",
-    "sprity-sass": "1.0.4",
-    "systemjs": "0.18.11",
-    "webpage": "0.3.0",
     "yargs": "3.30.0"
   },
   "devDependencies": {

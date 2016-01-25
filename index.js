@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @module fear-core-build-tasks
+ * @module fear-core-build
  */
 module.exports = {
 
