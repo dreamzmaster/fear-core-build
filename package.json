@@ -28,6 +28,7 @@
   "homepage": "http://digitalinnovation.github.io/fear-core-build",
   "dependencies": {
     "autoprefixer": "6.1.1",
+    "chai": "3.4.1",
     "del": "1.2.0",
     "gulp-batch": "1.0.5",
     "gulp-copy": "0.0.2",
@@ -52,6 +53,8 @@
     "yargs": "3.30.0"
   },
   "devDependencies": {
+    "eslint": "1.2.1",
+    "eslint-config-fear-core": "git+https://github.com/digitalinnovation/fear-core-eslint-config",
     "jsdoc": "3.4.0",
     "onchange": "2.0.0"
   }
