@@ -11,7 +11,7 @@
     "dev": "npm run watch:test -s",
     "docs": "./node_modules/.bin/jsdoc ./tasks index.js --recurse --destination _gh_pages/docs --readme README.md",
     "prepublish" : "npm test",
-    "postpublish": "node postpublish; git checkout gh-pages; git merge master --strategy-option theirs; npm run docs; git add .; git commit -m 'update jsdocs'; git push origin gh-pages; git checkout master"
+    "postpublish": "node postpublish"
   },
   "repository": {
     "type": "git",
