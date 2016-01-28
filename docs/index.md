@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Fear Core Build
+title: Fear Core Tasks
 ---
 
   {% include README.md %}
