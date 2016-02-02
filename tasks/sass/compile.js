@@ -21,6 +21,7 @@ module.exports = function taskFactory(files, autoPrefixOptions, destinations, in
         var sourceMaps = require('gulp-sourcemaps');
         var postCss = require('gulp-postcss');
         var autoPrefixer = require('autoprefixer');
+        var combiner = require('stream-combiner2');
         var destinationsHelper = require('../helpers/build-destinations');
 
         var sassOptions = {
@@ -30,13 +31,19 @@ module.exports = function taskFactory(files, autoPrefixOptions, destinations, in
             errLogToConsole: true
         };
 
-        return gulp.src(files)
-            .pipe(sourceMaps.init())
-            .pipe(sass(sassOptions))
-            .pipe(postCss([autoPrefixer(autoPrefixOptions)]))
-            .pipe(sourceMaps.write('.'))
-            .pipe(gulp.dest(function (file) {
+        var compile = combiner.obj([
+            gulp.src(files),
+            sourceMaps.init(),
+            sass(sassOptions),
+            postCss([autoPrefixer(autoPrefixOptions)]),
+            sourceMaps.write('.'),
+            gulp.dest(function (file) {
                 return destinationsHelper.getDestinations(destinations, file.path);
-            }));
+            })
+        ]);
+
+        compile.on('error', console.error.bind(console));
+
+        return compile;
     };
 };

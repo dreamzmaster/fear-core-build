@@ -16,16 +16,21 @@ module.exports = function taskFactory (sources, destinations) {
 
         var gulp = require('gulp');
         var inlineSource = require('gulp-inline-source');
+        var combiner = require('stream-combiner2');
         var destinationsHelper = require('../helpers/build-destinations');
 
         var inlineSrcOpts = {
             'swallowErrors': false
         };
 
-        return gulp.src(sources)
-            .pipe(inlineSource(inlineSrcOpts))
-            .pipe(gulp.dest(function (file) {
+        var compile = combiner.obj([
+            gulp.src(sources),
+            inlineSource(inlineSrcOpts),
+            gulp.dest(function (file) {
                 return destinationsHelper.getDestinations(destinations, file.path);
-            }));
+            })
+        ]);
+
+        return compile;
     };
 };

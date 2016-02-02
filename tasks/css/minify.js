@@ -16,12 +16,19 @@ module.exports = function taskFactory(sources, destinations) {
 
         var gulp = require('gulp');
         var minifyCss = require('gulp-minify-css');
+        var combiner = require('stream-combiner2');
         var destinationsHelper = require('../helpers/build-destinations');
 
-        return gulp.src(sources)
-            .pipe(minifyCss())
-            .pipe(gulp.dest(function (file) {
+        var minify = combiner.obj([
+            gulp.src(sources),
+            minifyCss(),
+            gulp.dest(function (file) {
                 return destinationsHelper.getDestinations(destinations, file.path);
-            }));
+            })
+        ]);
+
+        minify.on('error', console.error.bind(console));
+
+        return minify;
     };
 };

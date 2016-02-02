@@ -17,14 +17,21 @@ module.exports = function taskFactory(toMinify, destinations) {
 
         var gulp = require('gulp');
         var uglify = require('gulp-uglify');
+        var combiner = require('stream-combiner2');
         var destinationsHelper = require('../helpers/build-destinations');
 
-        return gulp.src(toMinify)
-            .pipe(uglify({
+        var minify = combiner.obj([
+            gulp.src(toMinify),
+            uglify({
                 mangle: true
-            }))
-            .pipe(gulp.dest(function (file) {
+            }),
+            gulp.dest(function (file) {
                 return destinationsHelper.getDestinations(destinations, file.path);
-            }));
+            })
+        ]);
+
+        minify.on('error', console.error.bind(console));
+
+        return minify;
     };
 };

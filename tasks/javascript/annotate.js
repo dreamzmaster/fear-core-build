@@ -16,16 +16,23 @@ module.exports = function taskFactory(toAnnotate, destinations) {
     return function task() {
 
         var gulp = require('gulp');
+        var combiner = require('stream-combiner2');
         var ngAnnotate = require('gulp-ng-annotate');
         var destinationsHelper = require('../helpers/build-destinations');
 
-        return gulp.src(toAnnotate)
-            .pipe(ngAnnotate({
+        var annotate = combiner.obj([
+            gulp.src(toAnnotate),
+            ngAnnotate({
                 add: true,
                 single_quotes: true // eslint-disable-line camelcase
-            }))
-            .pipe(gulp.dest(function (file) {
+            }),
+            gulp.dest(function (file) {
                 return destinationsHelper.getDestinations(destinations, file.path);
-            }));
+            })
+        ]);
+
+        annotate.on('error', console.error.bind(console));
+
+        return annotate;
     };
 };
